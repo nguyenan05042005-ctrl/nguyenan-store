@@ -20,22 +20,21 @@ export default function Home() {
             {p.hot && <span style={{color:"red"}}>HOT 🔥</span>}
             <h3>{p.name}</h3>
             <p>{p.price}</p>
-            <button style={{background:"gold",padding:5}}>Mua ngay</button>
-          </div>
-        ))}
-      </div>
-
-      <div style={{position:"fixed",bottom:20,right:20}}>
-        <a href="https://m.me/yourpage">💬 Messenger</a><br/>
-        <a href="https://zalo.me/0902519336">📞 Zalo</a>
-      </div>
-    </div>
-  );
-}
-<button onClick={()=>{
+           <button onClick={()=>{
   const name = prompt("Tên của bạn:");
   const phone = prompt("Số điện thoại:");
   alert("Đặt hàng thành công!\\nChuyển khoản ACB: 18896211 - NGUYEN VAN AN");
 }} style={{background:"gold",padding:5}}>
   Mua ngay
 </button>
+          </div>
+        ))}
+      </div>
+
+      <div style={{position:"fixed",bottom:20,right:20}}
+        <a href="https://zalo.me/0902519336">📞 Zalo</a>
+      </div>
+    </div>
+  );
+}
+
