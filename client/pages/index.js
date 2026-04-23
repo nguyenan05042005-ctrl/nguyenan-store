@@ -10,15 +10,16 @@ export default function Home() {
     {id:4,name:"iPhone 17 Pro 512GB",price:"36.200.000đ"},
   ];
 
-  useEffect(()=>{
+  useEffect(() => {
     const data = JSON.parse(localStorage.getItem("cart")) || [];
     setCart(data);
-  },[]);
+  }, []);
 
-  const addToCart = (p)=>{
+  const addToCart = (p) => {
     const newCart = [...cart, p];
     setCart(newCart);
     localStorage.setItem("cart", JSON.stringify(newCart));
+    alert("Đã thêm vào giỏ 🛒");
   };
 
   return (
@@ -47,9 +48,11 @@ export default function Home() {
 
       {/* PRODUCTS */}
       <div className="p-5 grid grid-cols-2 md:grid-cols-4 gap-5">
-        {products.map(p=>(
-          <div key={p.id} className="bg-gray-900 p-3 rounded-xl shadow hover:scale-105 transition">
-            
+        {products.map((p) => (
+          <div
+            key={p.id}
+            className="bg-gray-900 p-3 rounded-xl shadow hover:scale-105 transition"
+          >
             <img
               src="https://i.imgur.com/6Iej2c3.png"
               className="rounded mb-3"
@@ -59,7 +62,7 @@ export default function Home() {
             <p className="text-yellow-400 font-bold">{p.price}</p>
 
             <button
-              onClick={()=>addToCart(p)}
+              onClick={() => addToCart(p)}
               className="mt-2 w-full bg-yellow-400 text-black py-2 rounded hover:bg-yellow-300"
             >
               Thêm vào giỏ
