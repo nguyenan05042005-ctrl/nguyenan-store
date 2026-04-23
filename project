@@ -1,0 +1,3 @@
+npx create-next-app@latest nguyenan-store
+cd nguyenan-store
+npm install mongoose jsonwebtoken bcryptjs
