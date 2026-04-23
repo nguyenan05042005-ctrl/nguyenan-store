@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const [cart, setCart] = useState([]);
@@ -8,57 +8,59 @@ export default function Home() {
     {id:2,name:"iPhone 17 Pro Max 512GB",price:"42.900.000đ"},
     {id:3,name:"iPhone 17 Pro 256GB",price:"34.400.000đ"},
     {id:4,name:"iPhone 17 Pro 512GB",price:"36.200.000đ"},
-    {id:5,name:"iPhone 17 256GB",price:"24.400.000đ"},
   ];
 
-  // load giỏ hàng
   useEffect(()=>{
     const data = JSON.parse(localStorage.getItem("cart")) || [];
     setCart(data);
   },[]);
 
-  // thêm vào giỏ
-  const addToCart = (product)=>{
-    const newCart = [...cart, product];
+  const addToCart = (p)=>{
+    const newCart = [...cart, p];
     setCart(newCart);
     localStorage.setItem("cart", JSON.stringify(newCart));
-    alert("Đã thêm vào giỏ 🛒");
   };
 
   return (
-    <div style={{background:"#000",color:"#fff",padding:20}}>
+    <div className="bg-black text-white min-h-screen">
 
-      <h1 style={{color:"gold"}}>NGUYỄN AN STORE</h1>
-      <p>Uy tín tạo nên thương hiệu</p>
+      {/* HEADER */}
+      <div className="flex justify-between items-center p-4 border-b border-gray-800">
+        <h1 className="text-2xl font-bold text-yellow-400">
+          NGUYỄN AN STORE
+        </h1>
 
-      <a href="/cart" style={{color:"gold"}}>
-        🛒 Giỏ hàng ({cart.length})
-      </a>
+        <a href="/cart" className="bg-yellow-400 text-black px-4 py-2 rounded">
+          🛒 {cart.length}
+        </a>
+      </div>
 
-      <div style={{
-        display:"grid",
-        gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))",
-        gap:20,
-        marginTop:20
-      }}>
+      {/* BANNER */}
+      <div className="text-center py-10 bg-gradient-to-r from-black to-gray-900">
+        <h2 className="text-3xl font-bold text-yellow-400">
+          CHUYÊN ĐIỆN THOẠI CHÍNH HÃNG
+        </h2>
+        <p className="text-gray-400 mt-2">
+          Giá tốt - Uy tín - Bảo hành rõ ràng
+        </p>
+      </div>
+
+      {/* PRODUCTS */}
+      <div className="p-5 grid grid-cols-2 md:grid-cols-4 gap-5">
         {products.map(p=>(
-          <div key={p.id} style={{
-            background:"#111",
-            padding:15,
-            borderRadius:10
-          }}>
-            <img src="https://i.imgur.com/6Iej2c3.png" style={{width:"100%"}}/>
-            <h3>{p.name}</h3>
-            <p style={{color:"gold"}}>{p.price}</p>
+          <div key={p.id} className="bg-gray-900 p-3 rounded-xl shadow hover:scale-105 transition">
+            
+            <img
+              src="https://i.imgur.com/6Iej2c3.png"
+              className="rounded mb-3"
+            />
+
+            <h3 className="text-sm">{p.name}</h3>
+            <p className="text-yellow-400 font-bold">{p.price}</p>
 
             <button
               onClick={()=>addToCart(p)}
-              style={{
-                background:"gold",
-                border:"none",
-                padding:10,
-                width:"100%"
-              }}
+              className="mt-2 w-full bg-yellow-400 text-black py-2 rounded hover:bg-yellow-300"
             >
               Thêm vào giỏ
             </button>
@@ -66,62 +68,10 @@ export default function Home() {
         ))}
       </div>
 
-    </div>
-  );
-}
-import { useEffect, useState } from "react";
-
-export default function Cart(){
-  const [cart,setCart] = useState([]);
-
-  useEffect(()=>{
-    const data = JSON.parse(localStorage.getItem("cart")) || [];
-    setCart(data);
-  },[]);
-
-  const removeItem = (index)=>{
-    const newCart = cart.filter((_,i)=>i !== index);
-    setCart(newCart);
-    localStorage.setItem("cart", JSON.stringify(newCart));
-  };
-
-  return(
-    <div style={{padding:20}}>
-      <h1>🛒 Giỏ hàng</h1>
-
-      {cart.length === 0 && <p>Chưa có sản phẩm</p>}
-
-      {cart.map((item,i)=>(
-        <div key={i} style={{
-          border:"1px solid #ccc",
-          padding:10,
-          marginBottom:10
-        }}>
-          <h3>{item.name}</h3>
-          <p>{item.price}</p>
-
-          <button onClick={()=>removeItem(i)}>
-            ❌ Xoá
-          </button>
-        </div>
-      ))}
-
-      {cart.length > 0 && (
-        <button
-          onClick={()=>{
-            alert("Đặt hàng thành công!\nChuyển khoản ACB: 18896211 - NGUYEN VAN AN");
-            localStorage.removeItem("cart");
-            setCart([]);
-          }}
-          style={{
-            background:"green",
-            color:"#fff",
-            padding:10
-          }}
-        >
-          Thanh toán
-        </button>
-      )}
+      {/* FOOTER */}
+      <div className="text-center text-gray-500 py-5">
+        Uy tín tạo nên thương hiệu
+      </div>
 
     </div>
   );
