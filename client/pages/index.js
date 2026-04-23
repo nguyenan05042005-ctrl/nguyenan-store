@@ -42,29 +42,50 @@ export default function Home() {
               borderRadius:12,
               boxShadow:"0 0 10px rgba(255,215,0,0.2)"
             }}>
-              {p.hot && <span style={{
-                background:"red",
-                padding:"3px 6px",
-                borderRadius:5,
-                fontSize:12
-              }}>HOT 🔥</span>}
+              {p.hot && (
+                <span style={{
+                  background:"red",
+                  padding:"3px 6px",
+                  borderRadius:5,
+                  fontSize:12
+                }}>
+                  HOT 🔥
+                </span>
+              )}
 
               <img 
-                src=\"https://via.placeholder.com/200\" 
-                style={{width:"100%",margin:"10px 0",borderRadius:10}}
+                src="https://via.placeholder.com/200"
+                style={{
+                  width:"100%",
+                  margin:"10px 0",
+                  borderRadius:10
+                }}
               />
 
               <h3 style={{margin:"10px 0"}}>{p.name}</h3>
-              <p style={{color:"gold",fontWeight:"bold"}}>{p.price}</p>
 
-              <button style={{
-                width:"100%",
-                background:"gold",
-                border:"none",
-                padding:10,
-                borderRadius:8,
-                cursor:"pointer"
+              <p style={{
+                color:"gold",
+                fontWeight:"bold"
               }}>
+                {p.price}
+              </p>
+
+              <button
+                onClick={()=>{
+                  const name = prompt("Tên của bạn:");
+                  const phone = prompt("Số điện thoại:");
+                  alert("Đặt hàng thành công!\nChuyển khoản ACB: 18896211 - NGUYEN VAN AN");
+                }}
+                style={{
+                  width:"100%",
+                  background:"gold",
+                  border:"none",
+                  padding:10,
+                  borderRadius:8,
+                  cursor:"pointer"
+                }}
+              >
                 Mua ngay
               </button>
             </div>
@@ -93,4 +114,3 @@ export default function Home() {
     </div>
   );
 }
-
