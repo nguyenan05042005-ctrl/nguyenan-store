@@ -54,7 +54,7 @@ export default function Home() {
               )}
 
               <img 
-                src="https://via.placeholder.com/200"
+                  src="https://i.imgur.com/6Iej2c3.png"
                 style={{
                   width:"100%",
                   margin:"10px 0",
