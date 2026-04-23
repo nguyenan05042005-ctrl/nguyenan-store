@@ -1,0 +1,4 @@
+client/
+   package.json
+   pages/
+      index.js
