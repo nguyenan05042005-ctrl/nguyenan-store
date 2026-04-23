@@ -69,3 +69,60 @@ export default function Home() {
     </div>
   );
 }
+import { useEffect, useState } from "react";
+
+export default function Cart(){
+  const [cart,setCart] = useState([]);
+
+  useEffect(()=>{
+    const data = JSON.parse(localStorage.getItem("cart")) || [];
+    setCart(data);
+  },[]);
+
+  const removeItem = (index)=>{
+    const newCart = cart.filter((_,i)=>i !== index);
+    setCart(newCart);
+    localStorage.setItem("cart", JSON.stringify(newCart));
+  };
+
+  return(
+    <div style={{padding:20}}>
+      <h1>🛒 Giỏ hàng</h1>
+
+      {cart.length === 0 && <p>Chưa có sản phẩm</p>}
+
+      {cart.map((item,i)=>(
+        <div key={i} style={{
+          border:"1px solid #ccc",
+          padding:10,
+          marginBottom:10
+        }}>
+          <h3>{item.name}</h3>
+          <p>{item.price}</p>
+
+          <button onClick={()=>removeItem(i)}>
+            ❌ Xoá
+          </button>
+        </div>
+      ))}
+
+      {cart.length > 0 && (
+        <button
+          onClick={()=>{
+            alert("Đặt hàng thành công!\nChuyển khoản ACB: 18896211 - NGUYEN VAN AN");
+            localStorage.removeItem("cart");
+            setCart([]);
+          }}
+          style={{
+            background:"green",
+            color:"#fff",
+            padding:10
+          }}
+        >
+          Thanh toán
+        </button>
+      )}
+
+    </div>
+  );
+}
