@@ -114,3 +114,17 @@ export default function Home() {
     </div>
   );
 }
+import { useState } from "react";
+
+export default function Cart() {
+  const [cart,setCart] = useState([]);
+
+  return (
+    <div style={{padding:20}}>
+      <h1>🛒 Giỏ hàng</h1>
+      {cart.length === 0 ? <p>Chưa có sản phẩm</p> : cart.map((item,i)=>(
+        <div key={i}>{item.name}</div>
+      ))}
+    </div>
+  );
+}
